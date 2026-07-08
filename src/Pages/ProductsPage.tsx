@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { apiRequest } from '../utils/api';
+import { apiRequest, API_BASE_URL } from '../utils/api';
 import EditProductModal from '../components/EditProductModal';
 
 interface Category {
@@ -49,7 +49,6 @@ interface ProductsPageProps {
   isAdminMode?: boolean;
 }
 
-const API_BASE = 'http://localhost:5000/api/v1';
 const availableColors = ['Red', 'Blue', 'Black', 'White', 'Green', 'Yellow', 'Pink', 'Grey'];
 const availableSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
@@ -242,7 +241,7 @@ export default function ProductsPage({ isAdminMode = false }: ProductsPageProps)
     }
 
     try {
-      const res = await fetch(`${API_BASE}/upload/images`, {
+      const res = await fetch(`${API_BASE_URL}/upload/images`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: form,
